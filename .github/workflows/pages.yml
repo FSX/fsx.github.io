@@ -18,6 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Dependencies
+        run: sudo apt install lowdown
       - name: Checkout
         uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
       - name: Build
