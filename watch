@@ -1,0 +1,23 @@
+#!/bin/sh
+
+command -v entr > /dev/null
+if [ $? -gt 0 ]; then
+	echo "entr not found" 1>&2
+	exit 1
+fi
+
+command -v darkhttpd > /dev/null
+if [ $? -gt 0 ]; then
+	echo "darkhttpd not found" 1>&2
+	exit 1
+fi
+
+if [ ! -d ./dst ]; then
+    mkdir ./dst
+fi
+
+darkhttpd ./dst &
+
+while sleep 1s; do
+	find ./src | entr -d ./build
+done

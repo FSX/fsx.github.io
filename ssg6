@@ -167,6 +167,7 @@ render_html_files() {
 render_md_files_lowdown() {
 	while read -r f; do
 		lowdown \
+			--parse-math \
 			--out-no-smarty \
 			--html-no-escapehtml \
 			--html-no-skiphtml \
